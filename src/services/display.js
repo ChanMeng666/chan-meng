@@ -42,22 +42,49 @@ export async function displayWelcome(capabilities = null) {
       const fig = await loadFiglet();
       const gradient = await loadGradient();
 
-      const asciiTitle = fig.textSync('Chan Meng', {
-        font: 'Standard',
+      // Main title with big, bold ASCII art
+      const asciiTitle = fig.textSync('CHAN MENG', {
+        font: 'ANSI Shadow',
+        horizontalLayout: 'default',
+        verticalLayout: 'default'
+      });
+
+      // Apply gradient (cyan to magenta, similar to Gemini CLI)
+      console.log(gradient.cyan.magenta.multiline(asciiTitle));
+
+      // Subtitle with Chinese text
+      const subtitle = fig.textSync('Ji Jian Sheng Huo', {
+        font: 'Small',
         horizontalLayout: 'default'
       });
 
-      console.log(gradient.pastel.multiline(asciiTitle));
+      console.log(gradient.cristal.multiline(subtitle));
+      console.log(chalk.dim.gray('                           极简生活 · Minimalist Living\n'));
+
+      // Decorative line
+      const decorativeLine = '─'.repeat(Math.min(capabilities.width - 4, 80));
+      console.log(gradient.atlas(decorativeLine));
+
     } catch (error) {
-      // Fallback to simple title
-      console.log(chalk.bold.cyan('='.repeat(50)));
-      console.log(chalk.bold.cyan('           CHAN MENG'));
-      console.log(chalk.bold.cyan('='.repeat(50)));
+      // Fallback to simple title with gradient
+      try {
+        const gradient = await loadGradient();
+        const simpleTitle = '\n█▀▀ █░█ ▄▀█ █▄░█   █▀▄▀█ █▀▀ █▄░█ █▀▀\n█▄▄ █▀█ █▀█ █░▀█   █░▀░█ ██▄ █░▀█ █▄█\n';
+        console.log(gradient.cyan.magenta(simpleTitle));
+        console.log(chalk.dim.gray('     极简生活 · Minimalist Living\n'));
+      } catch (err) {
+        // Final fallback
+        console.log(chalk.bold.cyan('='.repeat(50)));
+        console.log(chalk.bold.cyan('           CHAN MENG'));
+        console.log(chalk.dim.gray('         极简生活 · Minimalist Living'));
+        console.log(chalk.bold.cyan('='.repeat(50)));
+      }
     }
   } else {
     // Simple fallback
     console.log('='.repeat(50));
     console.log('           CHAN MENG');
+    console.log('      极简生活 · Minimalist Living');
     console.log('='.repeat(50));
   }
 
