@@ -1,0 +1,61 @@
+{
+  "name": "chan-meng",
+  "version": "1.0.0",
+  "description": "An interactive CLI to meet Chan Meng and explore her minimalist philosophy",
+  "type": "module",
+  "main": "index.js",
+  "bin": {
+    "chan-meng": "./index.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "preferGlobal": false,
+  "files": [
+    "index.js",
+    "src/",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
+    "test:watch": "NODE_OPTIONS=--experimental-vm-modules jest --watch",
+    "test:coverage": "NODE_OPTIONS=--experimental-vm-modules jest --coverage",
+    "validate-content": "node scripts/validate-content.js"
+  },
+  "keywords": [
+    "cli",
+    "minimalism",
+    "interactive",
+    "personal",
+    "biography",
+    "storytelling",
+    "terminal",
+    "npx"
+  ],
+  "author": {
+    "name": "Chan Meng",
+    "email": "chan@example.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ChanMeng666/chan-meng.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ChanMeng666/chan-meng/issues"
+  },
+  "homepage": "https://github.com/ChanMeng666/chan-meng#readme",
+  "dependencies": {
+    "boxen": "^7.1.1",
+    "chalk": "^5.6.2",
+    "conf": "^11.0.2",
+    "figlet": "^1.9.3",
+    "gradient-string": "^2.0.2",
+    "inquirer": "^9.3.8",
+    "ora": "^7.0.1"
+  },
+  "devDependencies": {
+    "ajv": "^8.17.1",
+    "jest": "^29.7.0"
+  }
+}

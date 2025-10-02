@@ -1,0 +1,152 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://chan-meng-cli/schemas/content.json",
+  "title": "Content Module Schema",
+  "description": "Validates content modules and story segments for chan-meng CLI",
+  "definitions": {
+    "StorySegment": {
+      "type": "object",
+      "required": ["id", "moduleId", "title", "content", "estimatedTime", "type"],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Sequential ID within module"
+        },
+        "moduleId": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]+$",
+          "description": "Parent module reference"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100,
+          "description": "Segment title"
+        },
+        "content": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 5000,
+          "description": "Main narrative text"
+        },
+        "estimatedTime": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Reading time in seconds"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["narrative", "quote", "list", "image-description"],
+          "description": "Content type"
+        },
+        "metadata": {
+          "type": "object",
+          "properties": {
+            "year": {
+              "type": "integer",
+              "minimum": 1990,
+              "maximum": 2030,
+              "description": "Timeline reference"
+            },
+            "location": {
+              "type": "string",
+              "maxLength": 100,
+              "description": "Geographic context"
+            },
+            "theme": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "minimalism",
+                  "family",
+                  "independence",
+                  "physical-minimalism",
+                  "social-minimalism",
+                  "relationships",
+                  "philosophy",
+                  "authenticity",
+                  "present-moment",
+                  "self-reliance"
+                ]
+              },
+              "uniqueItems": true,
+              "description": "Thematic tags"
+            },
+            "quote": {
+              "type": "string",
+              "maxLength": 500,
+              "description": "Pull quote if type === 'quote'"
+            },
+            "asciiArt": {
+              "type": "string",
+              "maxLength": 2000,
+              "description": "Optional ASCII illustration"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "ContentModule": {
+      "type": "object",
+      "required": ["id", "title", "description", "estimatedTime", "segments", "icon", "order"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]+$",
+          "description": "Unique module identifier"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 50,
+          "description": "Display name"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "description": "Brief overview for menu"
+        },
+        "estimatedTime": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Total time in seconds"
+        },
+        "segments": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/StorySegment"
+          },
+          "description": "Array of narrative segments"
+        },
+        "icon": {
+          "type": "string",
+          "maxLength": 10,
+          "description": "ASCII icon or emoji"
+        },
+        "order": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Display order in menu"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "oneOf": [
+    {
+      "$ref": "#/definitions/ContentModule"
+    },
+    {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ContentModule"
+      }
+    }
+  ]
+}

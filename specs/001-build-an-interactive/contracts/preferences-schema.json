@@ -1,0 +1,104 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://chan-meng-cli/schemas/preferences.json",
+  "title": "User Preferences Schema",
+  "description": "Validates user preferences and session data for chan-meng CLI",
+  "type": "object",
+  "required": ["version", "firstRunCompleted", "completedQuickTour", "visitedModules", "lastSession", "preferences", "stats"],
+  "properties": {
+    "version": {
+      "type": "integer",
+      "const": 1,
+      "description": "Schema version for migrations"
+    },
+    "firstRunCompleted": {
+      "type": "boolean",
+      "description": "Has user finished welcome flow?"
+    },
+    "completedQuickTour": {
+      "type": "boolean",
+      "description": "Completed quick tour mode?"
+    },
+    "visitedModules": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9-]+$"
+      },
+      "uniqueItems": true,
+      "description": "Array of visited moduleIds"
+    },
+    "lastSession": {
+      "type": "object",
+      "required": ["timestamp", "mode", "moduleId", "segmentId"],
+      "properties": {
+        "timestamp": {
+          "type": ["string", "null"],
+          "format": "date-time",
+          "description": "ISO 8601 datetime of last session"
+        },
+        "mode": {
+          "type": ["string", "null"],
+          "enum": ["quick-tour", "full-experience", null],
+          "description": "Last used mode"
+        },
+        "moduleId": {
+          "type": ["string", "null"],
+          "pattern": "^[a-z0-9-]+$",
+          "description": "Last visited module"
+        },
+        "segmentId": {
+          "type": ["integer", "null"],
+          "minimum": 1,
+          "description": "Last viewed segment"
+        }
+      },
+      "additionalProperties": false
+    },
+    "preferences": {
+      "type": "object",
+      "required": ["colorEnabled", "showTimeEstimates"],
+      "properties": {
+        "colorEnabled": {
+          "oneOf": [
+            { "type": "boolean" },
+            { "type": "string", "const": "auto" }
+          ],
+          "description": "User color preference"
+        },
+        "showTimeEstimates": {
+          "type": "boolean",
+          "description": "Show reading time estimates"
+        }
+      },
+      "additionalProperties": false
+    },
+    "stats": {
+      "type": "object",
+      "required": ["totalSessions", "totalTimeSpent", "modulesCompleted"],
+      "properties": {
+        "totalSessions": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of CLI sessions"
+        },
+        "totalTimeSpent": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total time spent in seconds"
+        },
+        "modulesCompleted": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+$"
+          },
+          "uniqueItems": true,
+          "description": "Fully viewed modules"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
