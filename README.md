@@ -122,11 +122,13 @@ To reset your progress, delete this directory.
 
 MIT
 
-## Contact
+## Author
 
-- **Email**: [Contact information from Connect module]
-- **GitHub**: [Your GitHub]
-- **LinkedIn**: [Your LinkedIn]
+**Chan Meng** - Senior AI/ML Infrastructure Engineer
+
+- 💼 **LinkedIn**: [chanmeng666](https://www.linkedin.com/in/chanmeng666/)
+- 🐙 **GitHub**: [ChanMeng666](https://github.com/ChanMeng666)
+- 📧 **Email**: chanmeng.dev@gmail.com
 
 ---
 

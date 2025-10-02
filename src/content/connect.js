@@ -18,24 +18,19 @@ export const connectModule = {
       title: 'Get in Touch',
       content: `Want to learn more or reach out?
 
-Chan values genuine connection over collecting contacts. If you have something meaningful to share or discuss, here's how to reach her:
+Chan Meng is a Senior AI/ML Infrastructure Engineer who values genuine connection over collecting contacts. If you have something meaningful to share or discuss, here's how to reach her:
 
-📧  Email: [your-email@example.com]
-    (Replace with actual email)
+📧  Email: chanmeng.dev@gmail.com
 
-💻  GitHub: github.com/[username]
-    (Replace with actual GitHub profile)
+💼  LinkedIn: linkedin.com/in/chanmeng666
 
-💼  LinkedIn: linkedin.com/in/[profile]
-    (Replace with actual LinkedIn profile)
-
-🌐  Website: [your-website.com]
-    (Optional: Replace with personal website if you have one)
+🐙  GitHub: github.com/ChanMeng666
 
 A note on communication: Chan practices the same minimalism in correspondence as in life. She reads everything but responds selectively. If your message aligns with her interests or offers genuine value, you'll hear back. If not, consider the silence an answer.
 
 She's particularly interested in discussions about:
 • Minimalism as philosophy, not aesthetics
+• AI/ML infrastructure and engineering
 • Intentional living and decision-making
 • Cross-cultural perspectives on simplicity
 • Practical experiments in reduction
