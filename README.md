@@ -36,17 +36,46 @@ One-click **FREE** execution via NPX - no installation required.
 
 
 
+## 📸 Screenshots & Demo
+
+### 🎬 Demo Video
+
 https://github.com/user-attachments/assets/66d9844c-bce6-4cd2-844b-022f672f7cbb
 
-<img width="2559" height="1500" alt="屏幕截图 2025-10-03 221732" src="https://github.com/user-attachments/assets/b9fb2214-4132-4d88-97f2-cc7c42e71655" />
+### 🖼️ Interface Showcase
 
-<img width="2559" height="1499" alt="屏幕截图 2025-10-03 221747" src="https://github.com/user-attachments/assets/f612ef74-7179-434f-a1b8-97b91a006971" />
+<div align="center">
 
-<img width="2559" height="1502" alt="屏幕截图 2025-10-03 221811" src="https://github.com/user-attachments/assets/9e23745a-0e3b-49b2-9016-f98261daee5a" />
+<table>
+<tr>
+<td width="50%">
+<img src="https://github.com/user-attachments/assets/b9fb2214-4132-4d88-97f2-cc7c42e71655" alt="Welcome Screen with Gradient ASCII Art"/>
+<p align="center"><b>🎨 Welcome Screen</b><br/><em>Vibrant gradient ASCII art with minimalist tagline</em></p>
+</td>
+<td width="50%">
+<img src="https://github.com/user-attachments/assets/f612ef74-7179-434f-a1b8-97b91a006971" alt="Interactive Main Menu"/>
+<p align="center"><b>🎯 Interactive Menu</b><br/><em>Choose between Quick Tour and Full Experience</em></p>
+</td>
+</tr>
+<tr>
+<td width="50%">
+<img src="https://github.com/user-attachments/assets/9e23745a-0e3b-49b2-9016-f98261daee5a" alt="The Journey Module"/>
+<p align="center"><b>🗺️ The Journey</b><br/><em>Story-driven exploration of minimalist philosophy</em></p>
+</td>
+<td width="50%">
+<img src="https://github.com/user-attachments/assets/0eb3b1ca-74ff-42c6-aa2a-bf9a08c41424" alt="Philosophy Module"/>
+<p align="center"><b>💭 Philosophy</b><br/><em>Deep dive into minimalist principles</em></p>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<img src="https://github.com/user-attachments/assets/931b2beb-6cf0-4834-8ac3-b2a0ed20b155" alt="Connect Module"/>
+<p align="center"><b>📧 Connect</b><br/><em>Multiple ways to get in touch with Chan Meng</em></p>
+</td>
+</tr>
+</table>
 
-<img width="2559" height="1498" alt="屏幕截图 2025-10-03 221832" src="https://github.com/user-attachments/assets/0eb3b1ca-74ff-42c6-aa2a-bf9a08c41424" />
-
-<img width="2559" height="1498" alt="屏幕截图 2025-10-03 221846" src="https://github.com/user-attachments/assets/931b2beb-6cf0-4834-8ac3-b2a0ed20b155" />
+</div>
 
 <details>
 <summary><kbd>📑 Table of Contents</kbd></summary>
