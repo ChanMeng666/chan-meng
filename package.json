@@ -1,11 +1,11 @@
 {
   "name": "chan-meng",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "An interactive CLI to meet Chan Meng and explore her minimalist philosophy",
   "type": "module",
   "main": "index.js",
   "bin": {
-    "chan-meng": "./index.js"
+    "chan-meng": "index.js"
   },
   "engines": {
     "node": ">=18.0.0"
@@ -40,7 +40,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ChanMeng666/chan-meng.git"
+    "url": "git+https://github.com/ChanMeng666/chan-meng.git"
   },
   "bugs": {
     "url": "https://github.com/ChanMeng666/chan-meng/issues"
