@@ -26,31 +26,40 @@ export function detectTerminalCapabilities() {
   // Check if stdout is a TTY
   capabilities.isTTY = stdout.isTTY || false;
 
-  // Check color support via chalk
-  if (chalk.supportsColor) {
-    capabilities.supportsColor = true;
-    capabilities.colorLevel = chalk.supportsColor.level || 0;
-  }
-
-  // Enhanced color detection for modern terminals
-  // Even if chalk doesn't detect TTY, check TERM and other indicators
+  // Get environment variables for color detection
   const term = process.env.TERM || '';
   const colorterm = process.env.COLORTERM || '';
+  const forceColor = process.env.FORCE_COLOR;
 
-  if (!capabilities.supportsColor) {
-    // Check for color-capable terminals
-    if (term.includes('256color') || term.includes('color') ||
-        colorterm === 'truecolor' || colorterm === '24bit' ||
-        process.env.WSL_DISTRO_NAME || process.env.WT_SESSION) {
-      capabilities.supportsColor = true;
-      capabilities.colorLevel = term.includes('256color') ? 2 : 1;
-    }
-  }
-
-  // Check NO_COLOR environment variable (override all)
+  // Check NO_COLOR first (highest priority - user wants no color)
   if (process.env.NO_COLOR) {
     capabilities.supportsColor = false;
     capabilities.colorLevel = 0;
+  }
+  // Check FORCE_COLOR (second priority - explicitly requested)
+  else if (forceColor !== undefined && forceColor !== '0' && forceColor !== 'false') {
+    capabilities.supportsColor = true;
+    // Map FORCE_COLOR values to chalk levels
+    const level = parseInt(forceColor, 10);
+    capabilities.colorLevel = isNaN(level) ? 1 : Math.min(Math.max(level, 1), 3);
+  }
+  // Check chalk's detection (third priority)
+  else if (chalk.supportsColor) {
+    capabilities.supportsColor = true;
+    capabilities.colorLevel = chalk.supportsColor.level || 0;
+  }
+  // Fallback: Enhanced detection for modern terminals (fourth priority)
+  else if (
+    term.includes('256color') ||
+    term.includes('color') ||
+    colorterm === 'truecolor' ||
+    colorterm === '24bit' ||
+    process.env.WSL_DISTRO_NAME ||
+    process.env.WT_SESSION ||
+    process.env.COLORTERM
+  ) {
+    capabilities.supportsColor = true;
+    capabilities.colorLevel = term.includes('256color') || colorterm === 'truecolor' ? 2 : 1;
   }
 
   // Get terminal dimensions
@@ -87,29 +96,32 @@ export function detectTerminalCapabilities() {
 /**
  * Check if terminal meets minimum requirements
  * @param {Object} capabilities - Terminal capabilities
- * @returns {Object} { meets: boolean, issues: string[] }
+ * @returns {Object} { meets: boolean, issues: string[], warnings: string[] }
  */
 export function checkMinimumRequirements(capabilities) {
   const issues = [];
+  const warnings = [];
 
-  // Minimum width: 80 columns
-  if (capabilities.width < 80) {
+  // Minimum width: 80 columns (only check if we have column info)
+  if (capabilities.width && capabilities.width < 80) {
     issues.push(`Terminal too narrow: ${capabilities.width} columns (need 80+)`);
   }
 
-  // Minimum height: 24 rows
-  if (capabilities.height < 24) {
+  // Minimum height: 24 rows (only check if we have row info)
+  if (capabilities.height && capabilities.height < 24) {
     issues.push(`Terminal too short: ${capabilities.height} rows (need 24+)`);
   }
 
-  // Warn if not a TTY (might be piped/redirected)
+  // Not being in a TTY is just a warning, not a blocking issue
+  // Many tools (like npx in non-interactive mode) work fine without TTY
   if (!capabilities.isTTY) {
-    issues.push('Not running in a TTY (interactive terminal)');
+    warnings.push('Running in non-TTY mode (this is usually fine)');
   }
 
   return {
     meets: issues.length === 0,
-    issues
+    issues,
+    warnings
   };
 }
 

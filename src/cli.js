@@ -105,7 +105,9 @@ export async function startCLI() {
 
   // Check terminal requirements
   const requirements = checkMinimumRequirements(capabilities);
-  if (!requirements.meets) {
+
+  // Only prompt if there are actual blocking issues (not just warnings)
+  if (!requirements.meets && requirements.issues.length > 0) {
     console.log(chalk.yellow.bold('\nWarning: Terminal requirements not met\n'));
     requirements.issues.forEach(issue => {
       console.log(chalk.yellow(`  • ${issue}`));
@@ -125,6 +127,11 @@ export async function startCLI() {
       console.log('\nGoodbye!\n');
       return;
     }
+  }
+  // Show warnings silently (don't block execution)
+  else if (requirements.warnings && requirements.warnings.length > 0) {
+    // Silently continue - warnings are informational only
+    // This allows npx and other non-TTY contexts to work seamlessly
   }
 
   // Initialize navigation state
