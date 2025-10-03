@@ -34,6 +34,20 @@ One-click **FREE** execution via NPX - no installation required.
 > [!TIP]
 > This project demonstrates minimalist CLI design with modern JavaScript. It combines interactive storytelling with elegant terminal UX to create an engaging personal introduction experience.
 
+
+
+https://github.com/user-attachments/assets/66d9844c-bce6-4cd2-844b-022f672f7cbb
+
+<img width="2559" height="1500" alt="屏幕截图 2025-10-03 221732" src="https://github.com/user-attachments/assets/b9fb2214-4132-4d88-97f2-cc7c42e71655" />
+
+<img width="2559" height="1499" alt="屏幕截图 2025-10-03 221747" src="https://github.com/user-attachments/assets/f612ef74-7179-434f-a1b8-97b91a006971" />
+
+<img width="2559" height="1502" alt="屏幕截图 2025-10-03 221811" src="https://github.com/user-attachments/assets/9e23745a-0e3b-49b2-9016-f98261daee5a" />
+
+<img width="2559" height="1498" alt="屏幕截图 2025-10-03 221832" src="https://github.com/user-attachments/assets/0eb3b1ca-74ff-42c6-aa2a-bf9a08c41424" />
+
+<img width="2559" height="1498" alt="屏幕截图 2025-10-03 221846" src="https://github.com/user-attachments/assets/931b2beb-6cf0-4834-8ac3-b2a0ed20b155" />
+
 <details>
 <summary><kbd>📑 Table of Contents</kbd></summary>
 
