@@ -50,7 +50,8 @@ export async function displayWelcome(capabilities = null) {
 
     // Apply gradient (cyan to magenta, similar to Gemini CLI)
     if (capabilities.supportsColor) {
-      console.log(gradient.cyan.magenta.multiline(asciiTitle));
+      const cyanMagenta = gradient('cyan', 'magenta');
+      console.log(cyanMagenta.multiline(asciiTitle));
     } else {
       console.log(asciiTitle);
     }
@@ -84,7 +85,8 @@ export async function displayWelcome(capabilities = null) {
 ██║     ██╔══██║██╔══██║██║╚██╗██║    ██║╚██╔╝██║██╔══╝  ██║╚██╗██║██║   ██║
 ╚██████╗██║  ██║██║  ██║██║ ╚████║    ██║ ╚═╝ ██║███████╗██║ ╚████║╚██████╔╝
  ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝    ╚═╝     ╚═╝╚══════╝╚═╝  ╚═══╝ ╚═════╝`;
-        console.log(gradient.cyan.magenta.multiline(blockTitle));
+        const cyanMagenta = gradient('cyan', 'magenta');
+        console.log(cyanMagenta.multiline(blockTitle));
         console.log(chalk.dim.cyan('                           极简生活 · Minimalist Living\n'));
       } catch (err) {
         // Final fallback with color

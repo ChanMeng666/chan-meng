@@ -32,7 +32,22 @@ export function detectTerminalCapabilities() {
     capabilities.colorLevel = chalk.supportsColor.level || 0;
   }
 
-  // Check NO_COLOR environment variable
+  // Enhanced color detection for modern terminals
+  // Even if chalk doesn't detect TTY, check TERM and other indicators
+  const term = process.env.TERM || '';
+  const colorterm = process.env.COLORTERM || '';
+
+  if (!capabilities.supportsColor) {
+    // Check for color-capable terminals
+    if (term.includes('256color') || term.includes('color') ||
+        colorterm === 'truecolor' || colorterm === '24bit' ||
+        process.env.WSL_DISTRO_NAME || process.env.WT_SESSION) {
+      capabilities.supportsColor = true;
+      capabilities.colorLevel = term.includes('256color') ? 2 : 1;
+    }
+  }
+
+  // Check NO_COLOR environment variable (override all)
   if (process.env.NO_COLOR) {
     capabilities.supportsColor = false;
     capabilities.colorLevel = 0;
@@ -46,7 +61,6 @@ export function detectTerminalCapabilities() {
 
   // Unicode/Emoji support detection (heuristic)
   // Assume support unless explicitly disabled or on very old terminals
-  const term = process.env.TERM || '';
   const lang = process.env.LANG || '';
 
   // Known terminals with poor Unicode support
